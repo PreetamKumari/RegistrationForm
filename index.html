@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="master.css">
+  </head>
+  <body>
+    <h2>Registration form</h2>
+    <div class="container">
+      <form class="form" onsubmit="alert("Form Submitted"); return validation()"  name="googlespreadsheet" id="forms">
+      <div class="form-control">
+        <!-- name -->
+        <label>Username*</label><br>
+        <input type="text" placeholder="username" id="username" name="Username" required>
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+       <span id="usererror" class="text-danger "></span>
+
+      </div>
+      <div class="form-control">
+        <!-- phone -->
+        <label>Phone</label><br>
+        <input type="number" placeholder="10-digit phone number" id="phone" name="Phone">
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+        <span id="phoneerror" class="text-danger "></span>
+
+      </div>
+      <div class="form-control">
+        <!-- email -->
+        <label>Email*</label><br>
+        <input type="text" placeholder="example:abc@gmail.com" id="email" name="Email" required>
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+        <span id="emailerror" class="text-danger "></span>
+
+      </div>
+      <div class="form-control-bio">
+        <!-- bio-->
+        <label>Bio</label><br>
+        <input type="textarea" placeholder="describe yourself in less than 60 words" name="Bio" id="bio" >
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+        <span id="bioerror" class="text-danger "></span>
+
+      </div>
+      <div class="form-control">
+        <!-- DOB-->
+        <label>Date of Birth*</label><br>
+        <input type="date" id="dob" name="DOB" required>
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+        <span id="dobrerror" class="text-danger "></span>
+
+      </div>
+      <div class="form-control-radio">
+        <!-- gender -->
+        <label required>Gender*</label><br>
+        Male<input type="radio" value="male" id="male" name="gender" class="radio">
+        Female<input type="radio" value=" female" id="female" name="gender" class="radio">
+        Other<input type="radio" value="other" id="other" name="gender" class="radio">
+        <i class="fa fa-check-circle"></i>
+        <i class="fa fa-exclamation-circle"></i><br>
+        <span id="gendererror" class="text-danger "></span>
+
+      </div>
+      <button class="btn" type="submit" name="submit" onClick="return validation();">Submit</button>
+      <button class="btn" type="reset" name="reset">Reset</button>
+
+    </form>
+
+  </div>
+
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzQ9ryuongh_es8X0je__tZcX_DsWoQ7175oriY4yo0vDR6nMmYzrq3FqPcnK-0nNDC/exec'
+  const form = document.forms['googlespreadsheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+  </script>
+  </body>
+  <script type="text/javascript" src="script.js"></script>
+
+
+</html>
